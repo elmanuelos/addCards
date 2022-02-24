@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      body{
+        background-image: url("img/love.jpg");
+        background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover;
+      }
+        div {
+/*display:flex;*/
+            width: 270px;
+            height: 120px;
+          background-color: crimson;
+          float:left;
+          margin-top: 15px;
+          margin-left: 15px;
+          margin-right: 15px;
+          border-radius: 5px;
+        }
+        img{
+          float:right;
+          padding-top: 2px;
+          padding-right: 5px;
+        }
+
+    </style>
+
+</head>
+<body>
+  <fieldset>
+  <legend>Welcome ❤!!</legend>
+    <input type="text" name="titulo" id="titulo" placeholder="Titulo">
+    <input type="text" name="contenido" id="contenido" placeholder="Contenido">
+    <button onclick="agregar()">Agregar</button>
+  </fieldset>
+</br></br>
+
+    <script>
+
+        let cont = 0; // contador para cada div que se agrega
+        function agregar() {
+            //alert("cliiick");
+            cont++; // se incrementa contador
+
+            let div = document.createElement("div");
+            let divTitulo = document.createElement("divTitulo");
+            let divContenido = document.createElement("divContenido");
+            div.setAttribute("id","div_" + cont); // se agrega el contador al id
+            //div.setAttribute("class","div_" + cont);
+            divTitulo.style.float="left";
+            divTitulo.style.marginLeft="15px";
+            divTitulo.style.marginTop="10px";
+
+            divContenido.style.float="left";
+            divContenido.style.width="280px";
+            divContenido.style.marginLeft="15px";
+            divContenido.style.marginRight="15px";
+            divContenido.style.color="white";
+
+            let imagen = document.createElement("img");
+            imagen.setAttribute("id","imgCerrar_"+cont); // se agrega el cont al id de la img
+            imagen.setAttribute("src","img/cerrar.png");
+            imagen.setAttribute("alt","eliminar");
+
+
+            let text1 = document.getElementById("titulo").value;
+            let text2 = document.getElementById("contenido").value;
+
+            let titulo = document.createTextNode(text1);
+            divTitulo.appendChild(titulo);
+
+            let contenido = document.createTextNode(text2);
+            divContenido.appendChild(contenido);
+
+            div.appendChild(imagen);
+            div.appendChild(divTitulo);
+            div.appendChild(divContenido);
+            document.body.appendChild(div);
+            //document.getElementsByClassName("container").appendChild(div);
+
+            document.getElementById("imgCerrar_"+cont).addEventListener("click", cerrar);
+
+            document.getElementById("titulo").value="";
+            document.getElementById("contenido").value="";
+
+
+        };
+
+        function cerrar(e){
+          var myid = e.target.id.substr(10);
+          //alert(myid);
+          document.getElementById("div_"+myid).parentNode.removeChild(document.getElementById("div_"+myid));
+        };
+
+        </script>
+</body>
+</html>
